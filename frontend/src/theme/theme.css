@@ -1,0 +1,33 @@
+
+body {
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+:root {
+  --primary-bg: #ffffff;
+  --primary-text: #000000;
+  --shadow-color: rgba(0, 0, 0, 0.08);
+}
+
+.dark {
+  --primary-bg: #000000;
+  --primary-text: #ffffff;
+  --shadow-color: rgba(255, 255, 255, 0.12);
+}
+
+button {
+  background-color: var(--primary-bg);
+  color: var(--primary-text);
+}
+
+.primary-bg {
+  background-color: var(--primary-bg);
+}
+
+.primary-text {
+  color: var(--primary-text);
+}
+
+button {
+  box-shadow: 0 2px 8px var(--shadow-color);
+}

@@ -1,3 +1,54 @@
+import { useReducer } from "react";
+import { useTheme } from "../theme/ThemeContext.jsx";
+
+import { Card } from "../ui/Card.jsx";
+import { reducer } from "../store/reducer.js";
+import { ButtonsGrid } from "../components/ButtonsGrid.jsx";
+
 export default function Calculator() {
-    return <><h1>Calculator Page</h1></>; // <> is a short hand for React Fragment <></></>
+  const [{ currentOperand, previousOperand, operation }, dispatch] = useReducer(reducer, {});
+  const { theme, toggleTheme } = useTheme();
+
+  const ToggleThemeButton = () => {
+    return (
+      <button onClick={toggleTheme} className={`mb-6 px-4 py-2 rounded`}>
+        Switch to {theme === "dark" ? "Light" : "Dark"} Theme
+      </button>
+    );
+  };
+
+  return (
+    <>
+      <div
+        className={`flex flex-col items-center justify-center w-screen h-screen shadow-md`}
+      >
+        <ToggleThemeButton />
+        <Card className="max-w-xs mx-auto mt-10">
+          <div
+            className="text-right min-h-[40px] text-gray-400"
+            style={{
+              fontSize: "clamp(1rem, 2vw, 1.5rem)",
+              overflowX: "auto",
+              whiteSpace: "nowrap",
+              wordBreak: "break-all",
+            }}
+          >
+            {previousOperand} {operation}
+          </div>
+          <div
+            className="text-right min-h-[60px] mb-4"
+            style={{
+              fontSize: "clamp(1.5rem, 5vw, 3rem)",
+              overflowX: "auto",
+              whiteSpace: "nowrap",
+              wordBreak: "break-all",
+            }}
+          >
+            {currentOperand || 0}
+          </div>
+          <ButtonsGrid dispatch={dispatch} />
+        </Card>
+      </div>
+    </>
+  );
 }

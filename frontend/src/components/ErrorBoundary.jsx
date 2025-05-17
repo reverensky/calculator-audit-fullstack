@@ -23,15 +23,15 @@ class ErrorBoundary extends Component {
 
   renderFallbackUI() {
     return (
-      <div className="page gap-[16px]">
+      <div className="page gap-[16px] w-screen h-screen flex items-center justify-center">
         <h1>Something went wrong. Please try again later.</h1>
-        <Link
+        {/* <Link
           to="/"
           onClick={this.handleResetError}
           className="whitespace-nowrap"
         >
           Back to Wallet
-        </Link>
+        </Link> */}
       </div>
     );
   }
