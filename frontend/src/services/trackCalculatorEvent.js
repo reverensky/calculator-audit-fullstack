@@ -1,3 +1,5 @@
+import { fetchWrapper } from "../utils/fetchWrapper";
+
 export async function trackEvent({ action, value }) {
   const payload = {
     id: 1,
@@ -6,7 +8,7 @@ export async function trackEvent({ action, value }) {
   };
 
   const params = new URLSearchParams(payload).toString();
-  await fetch(`/api/events?${params}`, {
+  await fetchWrapper(`/api/events?${params}`, {
     method: "POST",
     mode: "no-cors",
   });
