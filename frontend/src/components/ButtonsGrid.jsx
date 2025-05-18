@@ -6,17 +6,21 @@ import { useTheme } from "../theme/ThemeContext.jsx";
 import { trackEvent } from "../services/trackCalculatorEvent.js";
 
 const getButtonBgColor = (button, theme = "light") => {
-  if (button.type === "OPERAND") return "#F1A33B";
+  if (button.type === "OPERATION") return "#F1A33B";
   if (button.label === "=") return "#3B82F6";
   if (button.label === "AC" || button.label === "%") return "#A5A5A5";
   return theme === "dark" ? "#333333" : "#D1D5DB";
 };
 
+const isSquareButton = (button) => {
+  return button.type === "OPERATION" || button.label === "=";
+}
+
 const getAction = (button) => {
   switch (button.type) {
     case "ACTION":
       return button.action;
-    case "OPERAND":
+    case "OPERATION":
       return ACTIONS.CHOOSE_OPERATION;
     default:
       return ACTIONS.ADD_DIGIT;
@@ -27,7 +31,7 @@ const getActionType = (button) => {
   switch (button.type) {
     case "ACTION":
       return "actionEntered";
-    case "OPERAND":
+    case "OPERATION":
       return "operatorEntered";
     default:
       return "numberEntered";
@@ -54,12 +58,12 @@ export const ButtonsGrid = ({ dispatch }) => {
   };
 
   return (
-    <div className="grid grid-cols-4 gap-2">
+    <div className="grid grid-cols-4 gap-2 w-full">
       {calculatorButtons.map((button, index) => (
         <Button
           key={index}
           style={{ backgroundColor: getButtonBgColor(button, theme) }}
-          className={clsx(button.className)}
+          className={clsx(button.className, 'h-full w-full', isSquareButton(button) && 'aspect-square')}
           onClick={() => handleClick(button)}
         >
           {button.label}

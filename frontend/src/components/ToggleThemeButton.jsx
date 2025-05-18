@@ -16,8 +16,8 @@ export const ToggleThemeButton = ({ theme, toggleTheme }) => {
         outline: "none",
         display: "flex",
         alignItems: "center",
-        transition: "background 0.3s, border 0.3s",
         position: "relative",
+        marginRight: "auto",
       }}
     >
       <span

@@ -18,10 +18,10 @@ export default function Calculator() {
       <div
         className={`flex flex-col items-center justify-center w-screen h-screen shadow-md`}
       >
-        <Card className="max-w-xs">
+        <Card id="calculator-card" className="max-w-[320px] max-h-[550px] w-full h-full">
           <ToggleThemeButton theme={theme} toggleTheme={toggleTheme} />
           <div
-            className="text-right min-h-[40px] text-gray-400"
+            className="text-right min-h-[40px] text-gray-400 w-full"
             style={{
               fontSize: "clamp(1rem, 2vw, 1.5rem)",
               overflowX: "auto",
@@ -32,7 +32,7 @@ export default function Calculator() {
             {previousOperand} {operation}
           </div>
           <div
-            className="text-right min-h-[60px] mb-4"
+            className="text-right min-h-[60px] mb-4 w-full flex-1"
             style={{
               fontSize: "clamp(1.5rem, 5vw, 3rem)",
               overflowX: "auto",
