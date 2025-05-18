@@ -14,10 +14,12 @@ async function createEvent(payload) {
   }
 }
 
-async function fetchEvents(offset = 0, limit = 10) {
+async function fetchEvents(offset = 0, limit = 10, session_id) {
+  const query = session_id ? { session_id } : {};
+  const sortQuery = { timestamp: session_id ? 1 : -1 };
   return event
-    .find()
-    .sort({ timestamp: -1 })
+    .find(query)
+    .sort(sortQuery)
     .skip(parseInt(offset))
     .limit(parseInt(limit));
 }

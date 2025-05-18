@@ -5,7 +5,7 @@ const {
 const { allowedValues } = require("../config/events.json");
 const ServerError = require("../errors");
 
-async function processCollectEvent(action, value) {
+async function processCollectEvent(action, value, session_id) {
   // Validate action and value
   if (!allowedValues[value]) {
     throw new ServerError("INVALID_ACTION");
@@ -18,6 +18,7 @@ async function processCollectEvent(action, value) {
     await createEvent({
       action,
       value,
+      session_id
     });
     return {
       customCode: 204,
@@ -31,9 +32,9 @@ async function processCollectEvent(action, value) {
   }
 }
 
-async function processGetEvents(offset, limit) {
+async function processGetEvents(offset, limit, session_id) {
   try {
-    const events = await fetchEvents(offset, limit);
+    const events = await fetchEvents(offset, limit, session_id);
     return events.map((event) => ({
       id: event._id,
       action: event.action,

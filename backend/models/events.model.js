@@ -15,12 +15,18 @@ const eventSchema = new mongoose.Schema({
   action: {
     type: String,
     required: true,
-    index: true,
   },
   value: {
     type: mongoose.Schema.Types.Mixed,
     required: true,
   },
+  session_id: {
+    type: String,
+    required: true,
+    index: true,
+  },
 });
+
+eventSchema.index({ session_id: 1, timestamp: 1 });
 
 module.exports = mongoose.model("Event", eventSchema);

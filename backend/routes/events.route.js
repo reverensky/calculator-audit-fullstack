@@ -18,6 +18,11 @@ const validateCollectEventQuery = [
     .withMessage("value must be a string")
     .notEmpty()
     .withMessage("value is required"),
+  query("session_id")
+    .isString()
+    .withMessage("sessionId must be a string")
+    .notEmpty()
+    .withMessage("sessionId is required"),
 ];
 
 const validateGetEvents = [
@@ -29,6 +34,7 @@ const validateGetEvents = [
     .default(10)
     .isInt({ min: 1 })
     .withMessage("Limit must be a positive number"),
+  query("session_id").optional(),
 ];
 
 router.post("", validateCollectEventQuery, validateRequest, collectEvent);
