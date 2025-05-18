@@ -4,26 +4,22 @@ import { useTheme } from "../theme/ThemeContext.jsx";
 import { Card } from "../ui/Card.jsx";
 import { reducer } from "../store/reducer.js";
 import { ButtonsGrid } from "../components/ButtonsGrid.jsx";
+import { ToggleThemeButton } from "../components/ToggleThemeButton.jsx";
 
 export default function Calculator() {
-  const [{ currentOperand, previousOperand, operation }, dispatch] = useReducer(reducer, {});
+  const [{ currentOperand, previousOperand, operation }, dispatch] = useReducer(
+    reducer,
+    {}
+  );
   const { theme, toggleTheme } = useTheme();
-
-  const ToggleThemeButton = () => {
-    return (
-      <button onClick={toggleTheme} className={`mb-6 px-4 py-2 rounded`}>
-        Switch to {theme === "dark" ? "Light" : "Dark"} Theme
-      </button>
-    );
-  };
 
   return (
     <>
       <div
         className={`flex flex-col items-center justify-center w-screen h-screen shadow-md`}
       >
-        <ToggleThemeButton />
-        <Card className="max-w-xs mx-auto mt-10">
+        <Card className="max-w-xs">
+          <ToggleThemeButton theme={theme} toggleTheme={toggleTheme} />
           <div
             className="text-right min-h-[40px] text-gray-400"
             style={{
