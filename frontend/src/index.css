@@ -63,4 +63,10 @@ button:focus-visible {
     overflow: hidden;
     z-index: 9999;
   }
+  #calculator-expression {
+    font-size: 36px !important;
+  }
+  #calculator-result {
+    font-size: 48px !important;
+  }
 }

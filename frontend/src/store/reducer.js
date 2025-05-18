@@ -1,7 +1,7 @@
 import { ACTIONS } from "../store/actions.js";
 
 function roundTo(num, decimals = 12) {
-  return Number(Math.round(num + "e" + decimals) + "e-" + decimals);
+  return Number(Number(num).toFixed(decimals));
 }
 
 function preprocessUnaryMinus(tokens) {
@@ -12,12 +12,10 @@ function preprocessUnaryMinus(tokens) {
       t === "-" &&
       (i === 0 || ["+", "-", "*", "/", "("].includes(tokens[i - 1]))
     ) {
-      // Unary minus detected, merge with next token
       if (i + 1 < tokens.length) {
         result.push("-" + tokens[i + 1]);
-        i++; // Skip next token because merged
+        i++;
       } else {
-        // No number after unary minus => error
         return null;
       }
     } else {
@@ -38,7 +36,6 @@ function evaluateExpression(input) {
   tokens = preprocessUnaryMinus(tokens);
   if (!tokens) return "Error";
 
-  // Now your existing logic on tokens
   let reduced = [];
   let i = 0;
   while (i < tokens.length) {
@@ -46,11 +43,11 @@ function evaluateExpression(input) {
     if ((t === "*" || t === "/") && reduced.length) {
       const prev = reduced.pop();
       const next = tokens[++i];
-      const val = parseFloat(prev);
-      const num = parseFloat(next);
-      if (isNaN(val) || isNaN(num)) return "Error";
+      const val = Number(prev);
+      const num = Number(next);
+      if (!isFinite(val) || !isFinite(num)) return "Error";
       const res = t === "*" ? val * num : num === 0 ? NaN : val / num;
-      if (isNaN(res)) return "Error";
+      if (!isFinite(res)) return "Error";
       reduced.push(String(res));
     } else {
       reduced.push(t);
@@ -58,12 +55,12 @@ function evaluateExpression(input) {
     i++;
   }
 
-  let result = parseFloat(reduced[0]);
-  if (isNaN(result)) return "Error";
+  let result = Number(reduced[0]);
+  if (!isFinite(result)) return "Error";
   for (let j = 1; j < reduced.length; j += 2) {
     const op = reduced[j];
-    const num = parseFloat(reduced[j + 1]);
-    if (isNaN(num)) return "Error";
+    const num = Number(reduced[j + 1]);
+    if (!isFinite(num)) return "Error";
     result = op === "+" ? result + num : result - num;
   }
 
@@ -210,7 +207,11 @@ export function reducer(state = initialState, { type, payload }) {
   console.log("Reducer called with type:", type);
   console.log("Reducer called with payload:", payload);
 
-  if (state.result === "Error" && type !== ACTIONS.ADD_DIGIT && type !== ACTIONS.CLEAR) {
+  if (
+    state.result === "Error" &&
+    type !== ACTIONS.ADD_DIGIT &&
+    type !== ACTIONS.CLEAR
+  ) {
     return state;
   }
 

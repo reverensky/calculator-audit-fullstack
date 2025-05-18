@@ -3,8 +3,8 @@ const mongoose = require("mongoose");
 const eventSchema = new mongoose.Schema({
   _id: {
     type: String,
-    // required: true,
-    // unique: true
+    required: true,
+    unique: true
   },
   timestamp: {
     type: Date,
@@ -22,8 +22,5 @@ const eventSchema = new mongoose.Schema({
     required: true,
   },
 });
-
-// Compound index example (optional)
-// eventSchema.index({ action: 1, timestamp: -1 });
 
 module.exports = mongoose.model("Event", eventSchema);
