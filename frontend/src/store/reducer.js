@@ -1,4 +1,4 @@
-import ACTIONS from "../store/actions.js";
+import { ACTIONS } from "../store/actions.js";
 
 // Utility function to perform calculation
 function evaluate({ currentOperand, previousOperand, operation }) {
@@ -36,7 +36,8 @@ function handleAddDigit(state, payload) {
     };
   }
   if (payload.digit === "0" && state.currentOperand === "0") return state;
-  if (payload.digit === "." && state.currentOperand?.includes(".")) return state;
+  if (payload.digit === "." && state.currentOperand?.includes("."))
+    return state;
   return {
     ...state,
     currentOperand: `${state.currentOperand || ""}${payload.digit}`,
@@ -86,11 +87,7 @@ function handleDeleteDigit(state) {
 }
 
 function handleEvaluate(state) {
-  if (
-    !state.operation ||
-    !state.currentOperand ||
-    !state.previousOperand
-  ) {
+  if (!state.operation || !state.currentOperand || !state.previousOperand) {
     return state;
   }
   return {

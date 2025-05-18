@@ -1,4 +1,4 @@
-import ACTIONS from "../store/actions.js";
+import { ACTIONS } from "../store/actions.js";
 
 // DIGIT has default action of ADD_DIGIT
 // OPERAND has default action of ADD_OPERAND

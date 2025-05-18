@@ -1,7 +1,7 @@
-export default {
-  ADD_DIGIT: "numberEntered",
-  CHOOSE_OPERATION: "operatorEntered",
-  CLEAR: "actionEntered",
-  DELETE_DIGIT: "actionEntered",
-  EVALUATE: "actionEntered",
+export const ACTIONS = {
+  ADD_DIGIT: "ADD_DIGIT",
+  CHOOSE_OPERATION: "CHOOSE_OPERATION",
+  CLEAR: "CLEAR",
+  DELETE_DIGIT: "DELETE_DIGIT",
+  EVALUATE: "EVALUATE",
 };

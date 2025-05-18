@@ -1,5 +1,5 @@
 import calculatorButtons from "../store/calculatorButtons.js";
-import ACTIONS from "../store/actions.js";
+import {ACTIONS} from "../store/actions.js";
 import { Button } from "../ui/Button.jsx";
 import clsx from "clsx";
 import { useTheme } from "../theme/ThemeContext.jsx";
@@ -12,7 +12,7 @@ const getButtonBgColor = (button, theme = "light") => {
   return theme === "dark" ? "#333333" : "#D1D5DB";
 };
 
-const getActionType = (button) => {
+const getAction = (button) => {
   switch (button.type) {
     case "ACTION":
       return button.action;
@@ -20,6 +20,17 @@ const getActionType = (button) => {
       return ACTIONS.CHOOSE_OPERATION;
     default:
       return ACTIONS.ADD_DIGIT;
+  }
+};
+
+const getActionType = (button) => {
+  switch (button.type) {
+    case "ACTION":
+      return "actionEntered";
+    case "OPERAND":
+      return "operatorEntered";
+    default:
+      return "numberEntered";
   }
 };
 
@@ -33,7 +44,7 @@ export const ButtonsGrid = ({ dispatch }) => {
 
   const handleClick = (button) => {
     dispatch({
-      type: getActionType(button),
+      type: getAction(button),
       payload: getPayload(button),
     });
     trackEvent({
