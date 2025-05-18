@@ -26,6 +26,7 @@ async function connectDB() {
     await mongoose.connect(dbUri, {
       connectTimeoutMS: 20000,
       socketTimeoutMS: 10000,
+      autoIndex: true,
     });
 
     await mongoose.connection.db.admin().command({ ping: 1 });

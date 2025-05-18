@@ -1,7 +1,8 @@
-const dotenv = require('dotenv');
-const envFile = `.env.${process.env.NODE_ENV || 'development'}`;
+const dotenv = require("dotenv");
+const envFile = `.env.${process.env.NODE_ENV || "development"}`;
 dotenv.config({ path: envFile });
 
+const eventsRoutes = require("./routes/events.route");
 
 const express = require("express");
 const createError = require("http-errors");
@@ -19,6 +20,10 @@ connectDB();
 app.use(logger("dev"));
 app.use(cors());
 app.use(express.json());
+
+// Routes
+app.use("/events", eventsRoutes);
+// app.use("/", analyticsRoutes);
 
 // Health check endpoint
 app.get("/health", (req, res) => {

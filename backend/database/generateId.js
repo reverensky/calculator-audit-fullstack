@@ -18,8 +18,6 @@ function generateId(idprefix) {
       ).join(", ")}`
     );
   }
-
-  // Generate and return the unique ID
   return `${prefix}-${uuidv4()}`;
 }
 

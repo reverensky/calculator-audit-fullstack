@@ -13,7 +13,11 @@ function formatError(error) {
 async function apiResponseHandler(req, res, servicePromise) {
   try {
     const responseBody = await servicePromise;
-    return sendResponse(res, 200, responseBody);
+    return sendResponse(
+      res,
+      (responseBody && responseBody.customCode) || 200,
+      responseBody.data || responseBody
+    );
   } catch (error) {
     const formattedError =
       typeof error.toObject === "function"
