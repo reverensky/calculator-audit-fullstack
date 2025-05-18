@@ -21,7 +21,7 @@ export default function Calculator() {
         <Card id="calculator-card" className="max-w-[320px] max-h-[550px] w-full h-full">
           <ToggleThemeButton theme={theme} toggleTheme={toggleTheme} />
           <div
-            className="text-right min-h-[40px] text-gray-400 w-full"
+            className="text-right min-h-[40px] text-gray-400 w-full flex-1 align-text-bottom"
             style={{
               fontSize: "clamp(1rem, 2vw, 1.5rem)",
               overflowX: "auto",
@@ -32,7 +32,7 @@ export default function Calculator() {
             {previousOperand} {operation}
           </div>
           <div
-            className="text-right min-h-[60px] mb-4 w-full flex-1"
+            className="text-right min-h-[60px] mb-4 w-full"
             style={{
               fontSize: "clamp(1.5rem, 5vw, 3rem)",
               overflowX: "auto",
