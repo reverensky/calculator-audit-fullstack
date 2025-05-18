@@ -1,0 +1,22 @@
+{
+  "allowedActions": ["actionEntered", "operatorEntered", "numberEntered"],
+  "allowedValues": {
+    "AC": "actionEntered",
+    "/": "operatorEntered",
+    "7": "numberEntered",
+    "8": "numberEntered",
+    "9": "numberEntered",
+    "*": "operatorEntered",
+    "4": "numberEntered",
+    "5": "numberEntered",
+    "6": "numberEntered",
+    "-": "operatorEntered",
+    "1": "numberEntered",
+    "2": "numberEntered",
+    "3": "numberEntered",
+    "+": "operatorEntered",
+    "0": "numberEntered",
+    ".": "numberEntered",
+    "=": "actionEntered"
+  }
+}
