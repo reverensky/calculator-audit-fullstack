@@ -22,7 +22,7 @@ app.use(cors());
 app.use(express.json());
 
 // Routes
-app.use("/events", eventsRoutes);
+app.use("/api/events", eventsRoutes);
 // app.use("/", analyticsRoutes);
 
 // Health check endpoint

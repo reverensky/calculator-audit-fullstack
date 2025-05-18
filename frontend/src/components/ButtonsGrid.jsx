@@ -3,6 +3,7 @@ import ACTIONS from "../store/actions.js";
 import { Button } from "../ui/Button.jsx";
 import clsx from "clsx";
 import { useTheme } from "../theme/ThemeContext.jsx";
+import { trackEvent } from "../services/trackCalculatorEvent.js";
 
 const getButtonBgColor = (button, theme = "light") => {
   if (button.type === "OPERAND") return "#F1A33B";
@@ -13,7 +14,7 @@ const getButtonBgColor = (button, theme = "light") => {
 
 const getActionType = (button) => {
   switch (button.type) {
-    case "PROCESS":
+    case "ACTION":
       return button.action;
     case "OPERAND":
       return ACTIONS.CHOOSE_OPERATION;
@@ -35,6 +36,10 @@ export const ButtonsGrid = ({ dispatch }) => {
       type: getActionType(button),
       payload: getPayload(button),
     });
+    trackEvent({
+      action: getActionType(button),
+      value: button.label,
+    });
   };
 
   return (
@@ -42,7 +47,7 @@ export const ButtonsGrid = ({ dispatch }) => {
       {calculatorButtons.map((button, index) => (
         <Button
           key={index}
-          style={{backgroundColor: getButtonBgColor(button, theme)}}
+          style={{ backgroundColor: getButtonBgColor(button, theme) }}
           className={clsx(button.className)}
           onClick={() => handleClick(button)}
         >

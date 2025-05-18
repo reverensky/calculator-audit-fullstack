@@ -1,7 +1,7 @@
 export default {
-  ADD_DIGIT: "add-digit",
-  CHOOSE_OPERATION: "choose-operation",
-  CLEAR: "clear",
-  DELETE_DIGIT: "delete-digit",
-  EVALUATE: "evaluate",
+  ADD_DIGIT: "numberEntered",
+  CHOOSE_OPERATION: "operatorEntered",
+  CLEAR: "actionEntered",
+  DELETE_DIGIT: "actionEntered",
+  EVALUATE: "actionEntered",
 };

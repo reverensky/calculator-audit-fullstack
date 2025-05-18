@@ -10,7 +10,7 @@ export const ThemeProvider = ({ children }) => {
   const [isMounted, setIsMounted] = useState(false);
   const [theme, setTheme] = useState(() => {
     // Load theme from localStorage or default to 'light'
-    return localStorage.getItem("theme") || "light";
+    return localStorage.getItem("theme") || "dark";
   });
 
   // Apply theme to the <html> tag on mount & when theme changes
