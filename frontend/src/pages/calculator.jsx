@@ -7,7 +7,7 @@ import { ButtonsGrid } from "../components/ButtonsGrid.jsx";
 import { ToggleThemeButton } from "../components/ToggleThemeButton.jsx";
 
 export default function Calculator() {
-  const [{ currentOperand, previousOperand, operation }, dispatch] = useReducer(
+  const [{ result, expression, operation }, dispatch] = useReducer(
     reducer,
     {}
   );
@@ -29,7 +29,7 @@ export default function Calculator() {
               wordBreak: "break-all",
             }}
           >
-            {previousOperand} {operation}
+            {expression || ""} {operation || ""}
           </div>
           <div
             className="text-right min-h-[60px] mb-4 w-full"
@@ -40,7 +40,7 @@ export default function Calculator() {
               wordBreak: "break-all",
             }}
           >
-            {currentOperand || 0}
+            {result || ""}
           </div>
           <ButtonsGrid dispatch={dispatch} />
         </Card>
