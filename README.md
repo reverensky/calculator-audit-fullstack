@@ -146,7 +146,7 @@ CALCULATOR-AUDIT-APP/
 ## ✅ Log an Event
 
 ```bash
-curl --location --request POST 'https://calculator-audit-fullstack.onrender.com/api/events?action=numberEntered&value=0' \
+curl --location --request POST 'https://calculator-audit-fullstack.onrender.com/api/events?action=numberEntered&value=0&session_id=4b670d3d-d14c-429d-8659-e55071bff967' \
 ```
 
 **Parameters**:
@@ -157,15 +157,16 @@ curl --location --request POST 'https://calculator-audit-fullstack.onrender.com/
 ## 🔍 Fetch Logs
 
 ```bash
-curl --location 'https://calculator-audit-fullstack.onrender.com/api/events?offset=0&limit=1'
+curl --location 'https://calculator-audit-fullstack.onrender.com/api/events?offset=0&limit=5&session_id=4b670d3d-d14c-429d-8659-e55071bff967'
 ```
 
 **Query Parameters**:
 
-| Parameter | Description                |
-| --------- | -------------------------- |
-| `offset`  | Number of logs to skip     |
-| `limit`   | Number of logs to retrieve |
+| Parameter    | Description                |
+| ------------ | -------------------------- |
+| `offset`     | Number of logs to skip     |
+| `limit`      | Number of logs to retrieve |
+| `session_id` | Unique session ID          |
 
 ## 📦 Event Log Schema
 
