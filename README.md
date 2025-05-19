@@ -153,6 +153,7 @@ curl --location --request POST 'https://calculator-audit-fullstack.onrender.com/
 
 - `action` (string): e.g., `numberEntered`, `operationClicked`, `resultCalculated`
 - `value` (string/number): The value or operand involved
+- `session_id` (string): UUID to identify a session
 
 ## 🔍 Fetch Logs
 
