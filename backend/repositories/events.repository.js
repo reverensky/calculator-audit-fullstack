@@ -1,13 +1,8 @@
 const event = require("../models/events.model");
-const { generateId } = require("../database/generateId");
 
 async function createEvent(payload) {
   try {
-    const eventPayload = {
-      _id: generateId("events"),
-      ...payload,
-    };
-    let newEvent = await event.create(eventPayload);
+    const newEvent = await event.create(payload);
     return newEvent;
   } catch (error) {
     throw error;
