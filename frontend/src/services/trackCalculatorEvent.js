@@ -5,7 +5,6 @@ const session_id = uuidv4();
 
 export async function trackEvent({ action, value }) {
   const payload = {
-    id: 1,
     action,
     value,
     session_id,
